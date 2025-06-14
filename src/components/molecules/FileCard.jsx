@@ -1,8 +1,9 @@
-import { motion } from 'framer-motion'
-import ApperIcon from '@/components/ApperIcon'
-import Button from '@/components/atoms/Button'
-import ProgressBar from '@/components/atoms/ProgressBar'
-import Badge from '@/components/atoms/Badge'
+import { motion } from "framer-motion";
+import ApperIcon from "@/components/ApperIcon";
+import Button from "@/components/atoms/Button";
+import ProgressBar from "@/components/atoms/ProgressBar";
+import Badge from "@/components/atoms/Badge";
+import React from "react";
 
 const FileCard = ({ file, onRemove, onRetry }) => {
   const formatFileSize = (bytes) => {
@@ -64,7 +65,7 @@ const FileCard = ({ file, onRemove, onRetry }) => {
         {/* File Info */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between mb-1">
-            <h3 className="text-sm font-medium text-white truncate">{file.name}</h3>
+<h3 className="text-sm font-medium text-white truncate">{file.Name || file.name}</h3>
             {getStatusBadge()}
           </div>
           
@@ -104,22 +105,22 @@ const FileCard = ({ file, onRemove, onRetry }) => {
         </div>
         
         {/* Actions */}
+{/* Actions */}
         <div className="flex-shrink-0 flex items-center space-x-2">
           {file.status === 'failed' && onRetry && (
             <Button
               variant="ghost"
               size="sm"
               icon="RotateCcw"
-              onClick={() => onRetry(file.id)}
+              onClick={() => onRetry(file.Id || file.id)}
             />
-          )}
           
           {(file.status === 'pending' || file.status === 'failed') && onRemove && (
             <Button
               variant="ghost"
               size="sm"
               icon="X"
-              onClick={() => onRemove(file.id)}
+onClick={() => onRemove(file.Id || file.id)}
               className="text-gray-400 hover:text-error"
             />
           )}

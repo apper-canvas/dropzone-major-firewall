@@ -75,10 +75,10 @@ const FileUploader = () => {
     })
   }
   
-  const handleRemoveFile = async (fileId) => {
+const handleRemoveFile = async (fileId) => {
     try {
       await fileService.delete(fileId)
-      setFiles(prev => prev.filter(f => f.id !== fileId))
+      setFiles(prev => prev.filter(f => f.Id !== fileId))
       toast.success('File removed from queue')
     } catch (error) {
       console.error('Failed to remove file:', error)
@@ -90,7 +90,7 @@ const FileUploader = () => {
     try {
       await fileService.update(fileId, { status: 'pending', progress: 0 })
       setFiles(prev => prev.map(f => 
-        f.id === fileId ? { ...f, status: 'pending', progress: 0 } : f
+        f.Id === fileId ? { ...f, status: 'pending', progress: 0 } : f
       ))
       toast.info('File added back to upload queue')
     } catch (error) {
@@ -114,51 +114,50 @@ const FileUploader = () => {
       setUploadSession(session)
       
       // Upload each file
-      for (const file of pendingFiles) {
+for (const file of pendingFiles) {
         try {
           // Update file status to uploading
-          await fileService.update(file.id, { status: 'uploading', progress: 0 })
+          await fileService.update(file.Id, { status: 'uploading', progress: 0 })
           setFiles(prev => prev.map(f => 
-            f.id === file.id ? { ...f, status: 'uploading', progress: 0 } : f
+            f.Id === file.Id ? { ...f, status: 'uploading', progress: 0 } : f
           ))
           
           // Simulate upload with progress
-          await uploadService.simulateUpload(file.id, (progress) => {
+          await uploadService.simulateUpload(file.Id, (progress) => {
             setFiles(prev => prev.map(f => 
-              f.id === file.id ? { ...f, progress } : f
+              f.Id === file.Id ? { ...f, progress } : f
             ))
           })
           
           // Mark as completed
-          await fileService.update(file.id, { 
+          await fileService.update(file.Id, { 
             status: 'completed', 
             progress: 100,
-            uploadedAt: new Date().toISOString()
+            uploaded_at: new Date().toISOString()
           })
           setFiles(prev => prev.map(f => 
-            f.id === file.id ? { ...f, status: 'completed', progress: 100, uploadedAt: new Date().toISOString() } : f
+            f.Id === file.Id ? { ...f, status: 'completed', progress: 100, uploaded_at: new Date().toISOString() } : f
           ))
           
           // Update session
-          await uploadService.updateSession(session.id, {
-            uploadedCount: session.uploadedCount + 1
+          await uploadService.updateSession(session.Id, {
+            uploaded_count: session.uploaded_count + 1
           })
           
-        } catch (error) {
-          console.error(`Failed to upload ${file.name}:`, error)
+} catch (error) {
+          console.error(`Failed to upload ${file.Name}:`, error)
           
           // Mark as failed
-          await fileService.update(file.id, { status: 'failed' })
+          await fileService.update(file.Id, { status: 'failed' })
           setFiles(prev => prev.map(f => 
-            f.id === file.id ? { ...f, status: 'failed' } : f
+            f.Id === file.Id ? { ...f, status: 'failed' } : f
           ))
           
           // Update session
-          await uploadService.updateSession(session.id, {
-            failedCount: session.failedCount + 1
+          await uploadService.updateSession(session.Id, {
+            failed_count: session.failed_count + 1
           })
-          
-          toast.error(`Failed to upload ${file.name}`)
+toast.error(`Failed to upload ${file.Name}`)
         }
       }
       
@@ -329,9 +328,9 @@ const FileUploader = () => {
             
             <div className="space-y-3 max-h-96 overflow-y-auto">
               <AnimatePresence>
-                {files.map((file, index) => (
+{files.map((file, index) => (
                   <motion.div
-                    key={file.id}
+                    key={file.Id || file.id}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
