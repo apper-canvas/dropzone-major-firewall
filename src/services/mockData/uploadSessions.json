@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "totalFiles": 5,
+    "totalSize": 20971520,
+    "uploadedCount": 3,
+    "failedCount": 1,
+    "startTime": "2024-01-15T10:00:00Z",
+    "status": "completed"
+  },
+  {
+    "id": "2",
+    "totalFiles": 2,
+    "totalSize": 5242880,
+    "uploadedCount": 2,
+    "failedCount": 0,
+    "startTime": "2024-01-15T14:30:00Z",
+    "status": "completed"
+  }
+]

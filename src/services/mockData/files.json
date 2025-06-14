@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "name": "presentation.pdf",
+    "size": 2457600,
+    "type": "application/pdf",
+    "status": "completed",
+    "progress": 100,
+    "uploadedAt": "1/15/2024 10:30:00 AMZ",
+    "preview": null
+  },
+  {
+    "id": "2",
+    "name": "design-mockup.png",
+    "size": 1024000,
+    "type": "image/png",
+    "status": "completed",
+    "progress": 100,
+    "uploadedAt": "2024-01-15T11:15:00Z",
+    "preview": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+  },
+  {
+    "id": "3",
+    "name": "project-files.zip",
+    "size": 15728640,
+    "type": "application/zip",
+    "status": "completed",
+    "progress": 100,
+    "uploadedAt": "2024-01-15T12:00:00Z",
+    "preview": null
+  }
+]
